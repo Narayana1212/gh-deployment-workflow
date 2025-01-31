@@ -1,0 +1,25 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main                # Trigger this action when you push to the main branch
+    paths:
+      - 'index.html'        # Only trigger if index.html changes
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest   # Use a clean virtual machine to run the job
+
+    steps:
+      # Step 1: Checkout the repository (get the code)
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages     # This is the branch where the site will be deployed
+          folder: .             # Source from the root folder (where index.html is)
+          
