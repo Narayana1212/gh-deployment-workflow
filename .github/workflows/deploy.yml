@@ -15,6 +15,8 @@ jobs:
       # Step 1: Checkout the repository (get the code)
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}  # Ensure token is used for pushing
 
       # Step 2: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
@@ -23,3 +25,6 @@ jobs:
           branch: gh-pages     # This is the branch where the site will be deployed
           folder: .             # Source from the root folder (where index.html is)
           
+          # Optional: Set the token explicitly if needed for private repos
+          token: ${{ secrets.GITHUB_TOKEN }}  # Make sure the token has push permissions
+
