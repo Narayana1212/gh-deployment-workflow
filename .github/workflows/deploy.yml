@@ -5,7 +5,7 @@ on:
     branches:
       - main                # Trigger this action when you push to the main branch
     paths:
-      - 'index.html'        # Only trigger if index.html changes
+      - 'index.html'        # Only trigger if index.html change
 
 jobs:
   deploy:
