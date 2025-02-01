@@ -3,28 +3,22 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main                # Trigger this action when you push to the main branch
+      - main              # Trigger action on push to main
     paths:
-      - 'index.html'        # Only trigger if index.html change
+      - 'index.html'      # Only trigger if index.html changes
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest   # Use a clean virtual machine to run the job
+    runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository (get the code)
+      # Checkout the code
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # Ensure token is used for pushing
 
-      # Step 2: Deploy to GitHub Pages
+      # Deploy to GitHub Pages using peaceiris action
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          branch: gh-pages     # This is the branch where the site will be deployed
-          folder: .             # Source from the root folder (where index.html is)
-          
-          # Optional: Set the token explicitly if needed for private repos
-          token: ${{ secrets.GITHUB_TOKEN }}  # Make sure the token has push permissions
-
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./  # Deploy from the root folder (where index.html is)
