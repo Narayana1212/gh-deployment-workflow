@@ -3,22 +3,20 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main              # Trigger action on push to main
+      - main  # Trigger action on push to main
     paths:
-      - 'index.html'      # Only trigger if index.html changes
+      - 'index.html'  # Only trigger if index.html changes
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Deploy to GitHub Pages using peaceiris action
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v3  # GitHub Pages deploy action
         with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  # Deploy from the root folder (where index.html is)
+          personal_token: ${{ secrets.GITHUB_TOKEN }}  # Ensure this token is provided
+          publish_dir: ./  # Path to your directory with index.html
